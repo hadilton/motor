@@ -1,0 +1,155 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace projeto_motor_2
+{
+
+    namespace ConsoleApp1
+    {
+        internal class Program
+        {
+            static double[] valor;
+            
+            static void maior()
+            {
+                double maior;
+                int i = 0;
+                int cont;
+               
+                maior = 0;
+                cont = 0;
+
+                for (i = 0; i < valor.Length; ++i)
+                {
+
+                    if (valor[i] > maior)
+                    {
+
+                        maior = valor[i];
+                        cont = i;
+                    }
+                }
+                Console.WriteLine("Maior valor: {0} - motor {1}", maior, cont + 1);
+            }
+            static void menor()
+            {
+                double menor;
+                int i = 0;
+                int cont1;
+
+
+                menor = 9999;
+                cont1 = 0;
+
+                for (i = 0; i < valor.Length; ++i)
+                {
+
+                   
+                    if (valor[i] == 0) 
+                    {
+                    }
+                    else
+                        if (valor[i] < menor)
+                    {
+                        menor = valor[i];
+                        cont1 = i;
+                    }
+                }
+                Console.WriteLine("Menor valor: {0} - motor {1}", menor, cont1 + 1);
+            }
+            static void lancar()
+            {
+                int motor;
+                do
+                {
+                    Console.Write("Qual o motor ?");
+                    motor = int.Parse(Console.ReadLine());
+                }
+                while (motor < 1 || motor > 15);
+
+                Console.Write("Qual o valor ?");
+                valor[motor - 1] += double.Parse(Console.ReadLine());
+
+                Console.WriteLine("Valor registrado!");
+
+            }
+            static void mostrar()
+            {
+                int motor;
+                double total;
+
+                total = 0;
+                for (motor = 0; motor < 15; motor++)
+                {
+                    Console.WriteLine("Motor {0}: R$ {1}",
+                    motor + 1, valor[motor]);
+                    total += valor[motor];
+                }
+                Console.WriteLine("-------");
+                Console.WriteLine("Total: R$ {0}", total);
+
+
+            }
+            static void Main(string[] args)
+            {
+
+                valor = new double[15];
+                int opcao;
+                double result;
+                int i = 0;
+
+                resultado = 0;
+
+                do
+                {
+                    
+                    Console.WriteLine("0. fechar o programa");
+                    Console.WriteLine("1. Lançar valor do motor");
+                    Console.WriteLine("2. Mostrar valores dos motores");
+                    Console.WriteLine("3. Maior e menor valor");
+                    Console.WriteLine("Escolha a sua opção");
+                    opcao = int.Parse(Console.ReadLine());
+
+                    Console.Clear();
+                    switch (opcao)
+                    {
+                        case 1:
+                            {
+                                lancar();
+                                break;
+                            }
+                        case 2:
+                            {
+                                mostrar();
+                                break;
+                            }
+                        case 3:
+                            {
+                                for (i = 0; i < valor.Length; i++)
+                                {
+                                    if (valor[i] > result)
+                                    {
+                                        result = valor[i];
+                                    }
+                                }
+                                if (result >= 1)                               
+                                {
+                                    maior();
+                                    menor();
+                                    
+                                }else
+                                  Console.WriteLine("ATÉ O MOMENTO, NÃO HOUVE GASTO EM NENHUM MOTOR.");
+                            }
+                            break;
+                    }
+                } while (opcao != 0);
+                
+            }
+        }
+    }
+}
+    
+
